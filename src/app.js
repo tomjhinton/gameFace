@@ -50,9 +50,9 @@ const canvas = document.getElementById('game')
 const  ctx  = canvas.getContext('2d')
 let boxes
 const player = {
-  height: 50,
-  width: 50,
-  posX: 0,
+  height: 20,
+  width: 20,
+  posX: 30,
   posY: 0,
   velX: 0,
   velY: 0,
@@ -76,7 +76,7 @@ function setup(){
   // border walls
   boxes.push({
     posX: 0,
-    posY: 590,
+    posY: 290,
     width: 1200,
     height: 10
   })
@@ -92,14 +92,14 @@ function setup(){
     posX: 0,
     posY: 0,
     width: 10,
-    height: 600
+    height: 300
   })
 
   boxes.push({
     posX: 1190,
     posY: 0,
     width: 10,
-    height: 600
+    height: 300
   })
 
 
@@ -161,7 +161,7 @@ function gameLoop() {
       if (!player.jumping && player.grounded) {
         player.jumping = true
         player.grounded = false
-        player.velY = -player.speed * 4
+        player.velY = -player.speed * 2
 
       }
     }if (surprised>0.9 && surprised<1.5) {
@@ -188,7 +188,7 @@ function gameLoop() {
     player.velX *= world.friction
     player.velY += world.gravity
 
-
+    player.grounded = false
     boxes.map(x => {
         ctx.fillRect(x.posX, x.posY, x.width, x.height)
         var dir  = collisionDetection(player, x)
@@ -208,7 +208,7 @@ function gameLoop() {
 
 
 
-    player.grounded = false
+
 
 
 
